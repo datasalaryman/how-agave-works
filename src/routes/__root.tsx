@@ -1,4 +1,5 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 import appCss from "../index.css?url";
 import { RootProvider } from 'fumadocs-ui/provider/tanstack';
 
@@ -16,15 +17,21 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <html lang="en">
+    <RootDocument>
+      <Outlet />
+    </RootDocument>
+  );
+}
+
+function RootDocument({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
-      <body>
-        <RootProvider>
-          <Outlet />
-          <Scripts />
-        </RootProvider>
+      <body className="flex min-h-screen flex-col">
+        <RootProvider>{children}</RootProvider>
+        <Scripts />
       </body>
     </html>
   );
