@@ -1,4 +1,8 @@
-# bun-react-tailwind-shadcn-template
+# How Agave Works
+
+This is a project documenting how the Agave validator client works based on the code today. 
+
+## Contributing
 
 To install dependencies:
 
