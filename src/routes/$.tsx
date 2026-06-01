@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DocsRoutePage, loadDocsPage } from "@/lib/docs-route";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/$")({
   component: Page,
-  loader: () => loadDocsPage([]),
+  loader: ({ params }) => loadDocsPage(params._splat?.split("/") ?? []),
 });
 
 function Page() {

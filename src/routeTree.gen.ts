@@ -9,13 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SplatRouteImport } from './routes/$'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiSearchRouteImport } from './routes/api/search'
 import { Route as ApiHelloRouteImport } from './routes/api/hello'
 import { Route as ApiHelloNameRouteImport } from './routes/api/hello/$name'
 
+const SplatRoute = SplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSearchRoute = ApiSearchRouteImport.update({
+  id: '/api/search',
+  path: '/api/search',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiHelloRoute = ApiHelloRouteImport.update({
@@ -31,40 +43,68 @@ const ApiHelloNameRoute = ApiHelloNameRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/api/hello': typeof ApiHelloRouteWithChildren
+  '/api/search': typeof ApiSearchRoute
   '/api/hello/$name': typeof ApiHelloNameRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/api/hello': typeof ApiHelloRouteWithChildren
+  '/api/search': typeof ApiSearchRoute
   '/api/hello/$name': typeof ApiHelloNameRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/api/hello': typeof ApiHelloRouteWithChildren
+  '/api/search': typeof ApiSearchRoute
   '/api/hello/$name': typeof ApiHelloNameRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/hello' | '/api/hello/$name'
+  fullPaths: '/' | '/$' | '/api/hello' | '/api/search' | '/api/hello/$name'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/hello' | '/api/hello/$name'
-  id: '__root__' | '/' | '/api/hello' | '/api/hello/$name'
+  to: '/' | '/$' | '/api/hello' | '/api/search' | '/api/hello/$name'
+  id:
+    | '__root__'
+    | '/'
+    | '/$'
+    | '/api/hello'
+    | '/api/search'
+    | '/api/hello/$name'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SplatRoute: typeof SplatRoute
   ApiHelloRoute: typeof ApiHelloRouteWithChildren
+  ApiSearchRoute: typeof ApiSearchRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/$': {
+      id: '/$'
+      path: '/$'
+      fullPath: '/$'
+      preLoaderRoute: typeof SplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/search': {
+      id: '/api/search'
+      path: '/api/search'
+      fullPath: '/api/search'
+      preLoaderRoute: typeof ApiSearchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/hello': {
@@ -98,7 +138,9 @@ const ApiHelloRouteWithChildren = ApiHelloRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SplatRoute: SplatRoute,
   ApiHelloRoute: ApiHelloRouteWithChildren,
+  ApiSearchRoute: ApiSearchRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

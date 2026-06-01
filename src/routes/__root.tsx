@@ -1,5 +1,6 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import appCss from "../index.css?url";
+import { RootProvider } from 'fumadocs-ui/provider/tanstack';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -20,8 +21,10 @@ function RootComponent() {
         <HeadContent />
       </head>
       <body>
-        <Outlet />
-        <Scripts />
+        <RootProvider>
+          <Outlet />
+          <Scripts />
+        </RootProvider>
       </body>
     </html>
   );
