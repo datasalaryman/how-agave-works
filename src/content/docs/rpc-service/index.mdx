@@ -5,6 +5,8 @@ title: RPC Service
 The RPC service is the main interface between users and services and the
 validator client.
 
+## JSON-RPC
+
 Agave's RPC service is an HTTP server like most RPC nodes (e.g. Helius, Triton
 One, etc) with two differences:
 
@@ -18,7 +20,20 @@ You can view the full specifications of the RPC service's HTTP methods
 
 ## Transaction checking and sending
 
-The RPC service converts the transaction data into bytes that the TPU can
-consume. It does several checks and makes sure that it can be sent. The data is
-handed off to the Send Transaction Service, whose purpose is leader TPU and
-targetting, transaction sending, and retry logic.
+<Mermaid
+  chart={`flowchart TB
+  subgraph rpc["RPC Service<br/>Interface accepting client requests"]
+    subgraph send["Send Transaction Service<br/>Transaction broadcast and retry logic"]
+      tpu["tpu-client-next<br/>Sending bytes to TPUs"]
+    end
+  end`}
+/>
+
+The **RPC Service** converts the transaction data into bytes that the TPU can
+consume. It does several checks and makes sure that it can be sent.
+
+The data is handed off to the **Send Transaction Service**, whose purpose is to
+handle transaction sending, and retry logic.
+
+The last piece is the **tpu-client-next** crate, which handles actually sending
+the bytes to the TPU.
