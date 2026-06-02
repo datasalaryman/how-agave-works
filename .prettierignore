@@ -1,0 +1,12 @@
+.github/*.md
+public
+.vercel
+.next
+**/.next
+.turbo
+dist
+coverage
+.source
+.claude
+.cursor
+.codex
