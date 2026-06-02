@@ -1,8 +1,17 @@
 ---
-title: RPC Service Section
+title: RPC Service
 ---
 
-Agave's RPC Service takes in Solana transactions in JSON-RPC input and sends it
-to the TPU via QUIC protocol. It sends transactions in 2 modes:
+The RPC service is the main interface between users and services and the
+validator client.
 
--
+Agave's RPC service is an HTTP server like most RPC nodes (e.g. Helius, Triton
+One, etc) with two differences:
+
+- It is tied to the internal state of the Agave client. If it diverges from the
+  network or is delayed, you will get those results in your HTTP responses.
+- It has a specialized Send Transaction Service that sends the transactions to
+  the TPU by batch.
+
+You can view the full specifications of the RPC service's HTTP methods
+[here](https://solana.com/docs/rpc).
