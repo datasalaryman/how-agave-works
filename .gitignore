@@ -5,6 +5,8 @@ node_modules
 out
 dist
 .source
+.output
+.vercel
 *.tgz
 
 # code coverage
