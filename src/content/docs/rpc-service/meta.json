@@ -1,5 +1,5 @@
 {
   "title": "RPC Service",
-  "pages": ["send-transaction-service"],
+  "pages": ["tpu-client-next"],
   "pagesIndex": "index"
 }
