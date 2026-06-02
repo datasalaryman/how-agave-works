@@ -2,5 +2,14 @@
 title: tpu-client-next
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua.
+Agave uses a specialized crate called
+[`tpu-client-next`](https://github.com/anza-xyz/agave/tree/master/tpu-client-next)
+to send transactions to the TPU.
+
+It is responsible for grouping the transactions into batches, and creating the
+worker threads and a scheduler for them that will ultimately send the
+transactions to the TPU.
+
+While not directly responsible for getting the leader network addresses, it
+enforces a `LeaderUpdater` trait that allows it to call the next leaders to send
+transactions to.
