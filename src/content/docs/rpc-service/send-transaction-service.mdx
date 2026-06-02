@@ -2,5 +2,10 @@
 title: Send Transaction Service
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua.
+The Send Transaction Service's is a support worker service to the main RPC
+service that sends transactions to the network.
+
+It first figures out the networking credentials for two relevant parties:
+
+1. It's TPU peers (configured by the operator)
+2. The TPUs of current and upcoming leaders (including itself)
