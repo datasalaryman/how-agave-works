@@ -1,0 +1,11 @@
+{
+  "title": "Transaction Processing Unit",
+  "pages": [
+    "ingress",
+    "sigverify",
+    "forwarding-stage",
+    "banking-stage",
+    "broadcast-stage"
+  ],
+  "pagesIndex": "index"
+}

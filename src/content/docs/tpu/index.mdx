@@ -1,5 +1,17 @@
 ---
-title: TPU
+title: Transaction Processing Unit
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+The transaction processing unit (TPU) is the service within the validator client
+that takes the transactions, executes them against the accounts' state, and
+creates a block for the network to process and vote on.
+
+It has the following components relevant to the transaction lifecycle:
+
+- Ingress - Direct TPU QUIC stream, Forwarded TPU QUIC, FetchStage
+- SigVerify - Deduplicating packets and verifies the Ed25519 transaction
+  signature
+- Forwarding Stage - Forwarding transaction to the next leader
+- Banking Stage - Transaction scheduling, execution, commitment, and recording
+  to proof of history
+- Broadcast Stage - Sending entries into turbine

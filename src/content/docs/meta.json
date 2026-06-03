@@ -2,11 +2,11 @@
   "pages": [
     "index",
     "rpc-service",
+    "tpu",
     "blockstore",
     "gossip",
     "rotor",
     "runtime",
-    "tpu",
     "tvu",
     "votor"
   ]
