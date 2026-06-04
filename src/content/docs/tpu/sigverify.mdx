@@ -2,5 +2,14 @@
 title: Signature Verification
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua.
+The Signature Verification (SigVerify) step of the transaction lifecycle within
+the CPU does deduplication of transaction sent and have its signature verified.
+Recently, it's also been responsible for checking transaction version
+compatibility.
+
+A Solana transaction has several signatures for each signer account. The
+verification implementation is found in the `solana-signature` crate.
+
+Solana currently uses `ed25519-dalek`, which utilizes the ed25519 curve under
+the hood to check if the message bytes and the account pubkey match the message
+signature.
