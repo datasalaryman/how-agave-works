@@ -1,13 +1,8 @@
 {
   "pages": [
     "index",
-    "rpc-service",
-    "tpu",
-    "blockstore",
-    "gossip",
-    "rotor",
-    "runtime",
-    "tvu",
-    "votor"
+    "transaction-lifecycle",
+    "validator-lifecycle",
+    "program-lifecycle"
   ]
 }

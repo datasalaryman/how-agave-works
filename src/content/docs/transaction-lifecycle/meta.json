@@ -1,0 +1,6 @@
+{
+  "title": "Transaction Lifecycle",
+  "defaultOpen": true,
+  "pages": ["rpc-service", "tpu", "blockstore", "rotor", "tvu", "votor"],
+  "pagesIndex": "index"
+}
